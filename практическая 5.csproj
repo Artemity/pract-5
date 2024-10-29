@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>практическая_5</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="7677284c3c76b7553577231f6faad4d8.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\lib13\lib13.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="7677284c3c76b7553577231f6faad4d8.jpg" />
+  </ItemGroup>
+
+</Project>
