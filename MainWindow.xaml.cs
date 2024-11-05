@@ -64,7 +64,7 @@ namespace практическая_5
             // Логика сравнения пар в зависимости от выбранных флажков
             // если первый элемент выбран, а второй и третий элементы не выбраны
             if (firstSelected.IsChecked == true && secondSelected.IsChecked == false && thirdSelected.IsChecked == false)
-                if (pair1.Compare())// Проверяет, равны ли элементы в паре
+                if (pair1)// Проверяет, равны ли элементы в паре
                 {
                     MessageBox.Show("Пара равна", "Результат сравнения");
                 }
@@ -73,7 +73,7 @@ namespace практическая_5
             // если первый элемент не выбран, второй элемент выбран, а третий элемент не выбран
             if (firstSelected.IsChecked == false && secondSelected.IsChecked == true && thirdSelected.IsChecked == false)
             {
-                if (pair2.Compare())
+                if (pair2)
                 {
                     MessageBox.Show("Пара равна", "Результат сравнения");
                 }
@@ -82,7 +82,7 @@ namespace практическая_5
             //если первый элемент не выбран, второй элемент не выбран, а третий элемент выбран
             if (firstSelected.IsChecked == false && secondSelected.IsChecked == false && thirdSelected.IsChecked == true)
             {
-                if (pair3.Compare())
+                if (pair3)
                 {
                     MessageBox.Show("Пара равна", "Результат сравнения");
                 }
@@ -139,39 +139,34 @@ namespace практическая_5
             thirdPair1.Text = pair3.First.ToString();
             thirdPair2.Text = pair3.Second.ToString();
 
-            // Логика вычитания пар в зависимости от выбранных флажков
-            if (firstSelected.IsChecked == true && secondSelected.IsChecked == false && thirdSelected.IsChecked == false)
-            {
-                resultMinus.Text = Convert.ToString(pair1.Minus());
-            }
-            if (firstSelected.IsChecked == false && secondSelected.IsChecked == true && thirdSelected.IsChecked == false)
-            {
-                resultMinus.Text = Convert.ToString(pair2.Minus());
-            }
-            if (firstSelected.IsChecked == false && secondSelected.IsChecked == false && thirdSelected.IsChecked == true)
-            {
-                resultMinus.Text = Convert.ToString(pair3.Minus());
-            }
+            Pair result = null; // Результат вычитания
 
+            // Логика вычитания пар в зависимости от выбранных флажков
             if (firstSelected.IsChecked == true && secondSelected.IsChecked == true && thirdSelected.IsChecked == false)
             {
-                Pair result = pair1.Minus(pair2);
-                resultMinus.Text = Convert.ToString(result.First + " , " + result.Second);
+                result = pair1 - pair2;
             }
-            if (firstSelected.IsChecked == true && secondSelected.IsChecked == false && thirdSelected.IsChecked == true)
+            else if (firstSelected.IsChecked == true && secondSelected.IsChecked == false && thirdSelected.IsChecked == true)
             {
-                Pair result = pair1.Minus(pair3);
-                resultMinus.Text = Convert.ToString(result.First + " , " + result.Second);
+                result = pair1 - pair3;
             }
-            if (firstSelected.IsChecked == false && secondSelected.IsChecked == true && thirdSelected.IsChecked == true)
+            else if (firstSelected.IsChecked == false && secondSelected.IsChecked == true && thirdSelected.IsChecked == true)
             {
-                Pair result = pair2.Minus(pair3);
-                resultMinus.Text = Convert.ToString(result.First + " , " + result.Second);
+                result = pair2 - pair3;
             }
-            if (firstSelected.IsChecked == true && secondSelected.IsChecked == true && thirdSelected.IsChecked == true)
+            else if (firstSelected.IsChecked == true && secondSelected.IsChecked == true && thirdSelected.IsChecked == true)
             {
-                Pair result = pair1.Minus(pair2, pair3);
-                resultMinus.Text = Convert.ToString(result.First + " , " + result.Second);
+                result = pair1.Minus(pair2, pair3);
+            }
+
+            // Конвертировать результат в строку
+            if (result != null)
+            {
+                resultMinus.Text = $"{result.First} , {result.Second}";
+            }
+            else
+            {
+                resultMinus.Text = string.Empty; // Или показываете предупреждение
             }
         }
 
