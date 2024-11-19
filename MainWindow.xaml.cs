@@ -21,6 +21,9 @@ namespace практическая_5
         Pair pair1 = new Pair(0, 0);
         Pair pair2 = new Pair(0, 0);
         Pair pair3 = new Pair(0, 0);
+
+        Rational rational1 = new Rational(0, 1); 
+        Rational rational2 = new Rational(0, 1);
         public MainWindow()
         {
             InitializeComponent();
@@ -43,7 +46,7 @@ namespace практическая_5
         /// <param name="e"></param>
         private void btnInfo_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Программу выполнил студент группы ИСП-31 Лотаков Артемий\nПрактическая работа 5 Вариант 13\nСоздать базовый класс Pair (пара целых чисел). Создать необходимые методы и свойства. Определить методы с операциями проверки на равенство и перемножения полей. Реализовать операцию вычитания пар по формуле (а, b) - (с,d) = (а - c, b - d). Создать перегруженный метод для вычитания трех пар чисел.", "Информация о программе");
+            MessageBox.Show("Программу выполнил студент группы ИСП-31 Лотаков Артемий\nПрактическая работа 7 Вариант 13\nИспользовать базовый класс Pair (пара целых чисел). Создать производный класс Rational; определить новые операции сложения (а, b) + (с, d) = (ad + be, bd) и деления (а, b)/ (с, d) = (ad, be); переопределить операцию вычитания (а, b) - (с, d) = (ad - be, bd)", "Информация о программе");
         }
 
         /// <summary>
@@ -139,34 +142,39 @@ namespace практическая_5
             thirdPair1.Text = pair3.First.ToString();
             thirdPair2.Text = pair3.Second.ToString();
 
-            Pair result = null; // Результат вычитания
+            Rational result = null; // Результат вычитания
 
             // Логика вычитания пар в зависимости от выбранных флажков
             if (firstSelected.IsChecked == true && secondSelected.IsChecked == true && thirdSelected.IsChecked == false)
             {
-                result = pair1 - pair2;
+                var rational1 = new Rational(pair1.First, pair1.Second);
+                var rational2 = new Rational(pair2.First, pair2.Second);
+                result = rational1 - rational2; // Используем переопределенную операцию вычитания из Rational
             }
             else if (firstSelected.IsChecked == true && secondSelected.IsChecked == false && thirdSelected.IsChecked == true)
             {
-                result = pair1 - pair3;
+                var rational1 = new Rational(pair1.First, pair1.Second);
+                var rational3 = new Rational(pair3.First, pair3.Second);
+                result = rational1 - rational3; // Используем переопределенную операцию вычитания из Rational
             }
             else if (firstSelected.IsChecked == false && secondSelected.IsChecked == true && thirdSelected.IsChecked == true)
             {
-                result = pair2 - pair3;
+                var rational2 = new Rational(pair2.First, pair2.Second);
+                var rational3 = new Rational(pair3.First, pair3.Second);
+                result = rational2 - rational3; // Используем переопределенную операцию вычитания из Rational
             }
             else if (firstSelected.IsChecked == true && secondSelected.IsChecked == true && thirdSelected.IsChecked == true)
             {
-                result = pair1.Minus(pair2, pair3);
+                var rational1 = new Rational(pair1.First, pair1.Second);
+                var rational2 = new Rational(pair2.First, pair2.Second);
+                var rational3 = new Rational(pair3.First, pair3.Second);
+                result = rational1 - rational2 - rational3; // Вычисление результата через вычитание с использованием Rational
             }
 
             // Конвертировать результат в строку
             if (result != null)
             {
-                resultMinus.Text = $"{result.First} , {result.Second}";
-            }
-            else
-            {
-                resultMinus.Text = string.Empty; // Или показываете предупреждение
+                resultMinus.Text = $"{result.First} / {result.Second}";
             }
         }
 
@@ -271,6 +279,36 @@ namespace практическая_5
                     int.TryParse(thirdPair2.Text, out addValue);
                     pair3.Second = addValue;
                     break;
+            }
+        }
+
+        private void btnDivide_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                rational1 = new Rational(int.Parse(firstRationalNumerator.Text), int.Parse(firstRationalDenominator.Text));
+                rational2 = new Rational(int.Parse(secondRationalNumerator.Text), int.Parse(secondRationalDenominator.Text));
+                Rational result = rational1.Divide(rational2);
+                resultDivide.Text = $"{result.First} / {result.Second}";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}");
+            }
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                rational1 = new Rational(int.Parse(firstRationalNumerator.Text), int.Parse(firstRationalDenominator.Text));
+                rational2 = new Rational(int.Parse(secondRationalNumerator.Text), int.Parse(secondRationalDenominator.Text));
+                Rational result = rational1.Add(rational2);
+                resultAdd.Text = $"{result.First} / {result.Second}";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}");
             }
         }
     }

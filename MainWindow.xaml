@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:практическая_5"
         mc:Ignorable="d"
-        Title="практическая 5" Height="450" Width="800" Icon="/7677284c3c76b7553577231f6faad4d8.jpg">
+        Title="практическая 5" Height="500" Width="800" Icon="/7677284c3c76b7553577231f6faad4d8.jpg">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="265*"/>
@@ -45,11 +45,14 @@
             </GroupBox>
             <CheckBox x:Name="thirdSelected" Content="Выбрать третью пару" HorizontalAlignment="Left" Margin="22" VerticalAlignment="Top"/>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="0" Margin="50">
+
+        <StackPanel Grid.Row="0" Grid.Column="3"/>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="50,10,50,144">
             <Button Content="Перемножить" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Click="btnMultiply_Click" Margin="10"/>
             <TextBox x:Name="resultMultiply" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" IsReadOnly="True" Margin="10"/>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="1" Margin="50">
+        <StackPanel Grid.Row="1" Margin="46,100,46,50">
             <Button Content="Вычесть" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Click="btnMinus_Click" Margin="10"/>
             <TextBox x:Name="resultMinus" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" IsReadOnly="True"/>
         </StackPanel>
@@ -58,6 +61,23 @@
             <Button Content="О программе" HorizontalAlignment="Center" VerticalAlignment="Center" Width="82" Click="btnInfo_Click" Margin="10"/>
             <Button Content="Выход" HorizontalAlignment="Center" VerticalAlignment="Center" Width="82" Click="btnExit_Click" Margin="10"/>
         </StackPanel>
+        
+        <GroupBox Header="Рациональные числа" Margin="21,7,102,10" Grid.Row="1" Grid.Column="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="123*"/>
+                    <ColumnDefinition Width="16*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="firstRationalNumerator" HorizontalAlignment="Left" Height="23" Margin="8,10,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+                <TextBox x:Name="firstRationalDenominator" HorizontalAlignment="Left" Height="23" Margin="8,49,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+                <TextBox x:Name="secondRationalNumerator" HorizontalAlignment="Left" Height="23" Margin="8,88,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+                <TextBox x:Name="secondRationalDenominator" HorizontalAlignment="Left" Height="23" Margin="8,127,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+                <TextBox x:Name="resultAdd" HorizontalAlignment="Left" Height="23" IsReadOnly="True" Margin="8,196,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+                <TextBox x:Name="resultDivide" HorizontalAlignment="Left" Height="23" IsReadOnly="True" Margin="8,166,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+            </Grid>
+        </GroupBox>
+        <Button Content="Разделить" HorizontalAlignment="Left" Click="btnDivide_Click" Grid.Column="1" Margin="187,31,0,200" Grid.Row="1"/>
+        <Button Content="Сложить" HorizontalAlignment="Left" Click="btnAdd_Click" Margin="187,99,0,134" Grid.Column="1" Grid.Row="1" Width="59"/>
 
     </Grid>
 </Window>
